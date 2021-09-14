@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true mexxik/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk  
+  region: "eu-central-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-408264527560"
+  bucket_path: "docker-react"
+  on:
+    branch: master 
+  access_key_id: $access_key_id
+  secret_access_key:
+    secure: "$secret_access_key"
